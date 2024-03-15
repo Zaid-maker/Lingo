@@ -1,4 +1,3 @@
-import React from "react";
 import { MobileSidebar } from "./mobile-sidebar";
 
 export const MobileHeader = () => {
