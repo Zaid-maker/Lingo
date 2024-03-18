@@ -1,1 +1,13 @@
-{"version":"5","dialect":"pg","entries":[]}
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1710781544410,
+      "tag": "0000_red_sir_ram",
+      "breakpoints": true
+    }
+  ]
+}
