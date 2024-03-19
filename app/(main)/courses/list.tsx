@@ -1,7 +1,7 @@
 "use client";
 
 import { courses } from "@/db/schema";
-import React from "react";
+
 import { Card } from "./card";
 
 type Props = {

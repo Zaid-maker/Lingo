@@ -1,7 +1,8 @@
 import { getCourses } from "@/db/queries";
+
 import { List } from "./list";
 
-const CoursePage = async () => {
+const CoursesPage = async () => {
   const courses = await getCourses();
 
   return (
@@ -12,4 +13,4 @@ const CoursePage = async () => {
   );
 };
 
-export default CoursePage;
+export default CoursesPage;
