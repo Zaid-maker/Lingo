@@ -1,11 +1,12 @@
 "use client";
 
-import { courses, userProgress } from "@/db/schema";
-
-import { Card } from "./card";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { toast } from "sonner";
+
 import { upsertUserProgress } from "@/actions/user-progress";
+import { courses, userProgress } from "@/db/schema";
+import { Card } from "./card";
 
 type Props = {
   courses: (typeof courses.$inferSelect)[];
@@ -24,7 +25,7 @@ export const List = ({ courses, activeCourseId }: Props) => {
     }
 
     startTransition(() => {
-      upsertUserProgress(id).catch(() => {});
+      upsertUserProgress(id).catch(() => toast.error("Something went wrong."));
     });
   };
 
