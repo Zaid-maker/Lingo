@@ -13,6 +13,7 @@ const LeanPage = async () => {
   if (!userProgress || !userProgress.activeCourseId) {
     redirect("/courses");
   }
+
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
