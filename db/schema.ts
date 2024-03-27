@@ -42,11 +42,29 @@ export const lessons = pgTable("lessons", {
 export const lessonsRelations = relations(lessons, ({ one, many }) => ({
   unit: one(units, {
     fields: [lessons.unitId],
-    references: [units.id]
-  })
-}))
+    references: [units.id],
+  }),
+  challenges: many(challenges)
+}));
 
-export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"])
+export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"]);
+
+export const challenges = pgTable("challenges", {
+  id: serial("lesson_id").primaryKey(),
+  lessonId: integer("lesson_id")
+    .references(() => lessons.id, { onDelete: "cascade" })
+    .notNull(),
+  type: challengesEnum("type").notNull(),
+  question: text("question").notNull(),
+  order: integer("order").notNull(),
+});
+
+export const challengesRelations = relations(challenges, ({ one, many }) => ({
+  lesson: one(lessons, {
+    fields: [challenges.lessonId],
+    references: [lessons.id],
+  }),
+}));
 
 export const userProgress = pgTable("user_progress", {
   userId: text("user_id").primaryKey(),

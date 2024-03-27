@@ -1,0 +1,265 @@
+{
+  "id": "d47ba44f-3015-4267-9b07-f179171661bb",
+  "prevId": "837b2e2d-7c46-43c1-b662-c12167327fb0",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "challenges": {
+      "name": "challenges",
+      "schema": "",
+      "columns": {
+        "lesson_id": {
+          "name": "lesson_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "question": {
+          "name": "question",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "challenges_lesson_id_lessons_id_fk": {
+          "name": "challenges_lesson_id_lessons_id_fk",
+          "tableFrom": "challenges",
+          "tableTo": "lessons",
+          "columnsFrom": [
+            "lesson_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "courses": {
+      "name": "courses",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_src": {
+          "name": "image_src",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "lessons": {
+      "name": "lessons",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "unit_id": {
+          "name": "unit_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "lessons_unit_id_units_id_fk": {
+          "name": "lessons_unit_id_units_id_fk",
+          "tableFrom": "lessons",
+          "tableTo": "units",
+          "columnsFrom": [
+            "unit_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "units": {
+      "name": "units",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "course_id": {
+          "name": "course_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "units_course_id_courses_id_fk": {
+          "name": "units_course_id_courses_id_fk",
+          "tableFrom": "units",
+          "tableTo": "courses",
+          "columnsFrom": [
+            "course_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "user_progress": {
+      "name": "user_progress",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'User'"
+        },
+        "user_image_src": {
+          "name": "user_image_src",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'/mascot.svg'"
+        },
+        "active_course_id": {
+          "name": "active_course_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hearts": {
+          "name": "hearts",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 5
+        },
+        "points": {
+          "name": "points",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_progress_active_course_id_courses_id_fk": {
+          "name": "user_progress_active_course_id_courses_id_fk",
+          "tableFrom": "user_progress",
+          "tableTo": "courses",
+          "columnsFrom": [
+            "active_course_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "type": {
+      "name": "type",
+      "values": {
+        "SELECT": "SELECT",
+        "ASSIST": "ASSIST"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
