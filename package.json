@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:studio": "npx drizzle-kit studio",
-    "db:generate": "npx drizzle-kit generate:pg",
+    "db:check": "npx drizzle-kit check:pg",
     "db:push": "npx drizzle-kit push:pg",
     "db:seed": "tsx ./scripts/seed.ts"
   },
